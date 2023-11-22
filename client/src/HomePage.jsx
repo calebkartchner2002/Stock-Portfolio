@@ -21,7 +21,7 @@ const featuredStocksData = [
 ];
 
 const pageStyle = {
-    backgroundColor: styles.colors.aquamarine,
+    // backgroundColor: styles.colors.aquamarine,
     padding: '20px', // Add padding for better visibility of content
   };
 

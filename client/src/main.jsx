@@ -7,6 +7,8 @@ import 'vite/modulepreload-polyfill';
 import App from './App.jsx';
 import Portfolio from "./Portfolio.jsx"
 
+
+
 const router = createHashRouter([
   {
     path: "/",
