@@ -1,5 +1,6 @@
 import React from 'react';
 import { styles } from './styles';
+import "./HomePage.css"
 
 // Dummy data for demonstration purposes
 const totalPerformanceData = {
@@ -20,17 +21,12 @@ const featuredStocksData = [
   // Add more featured stocks as needed
 ];
 
-const pageStyle = {
-    // backgroundColor: styles.colors.aquamarine,
-    padding: '20px', // Add padding for better visibility of content
-  };
 
-// Homepage component
 const HomePage = () => {
   return (
-    <div style={pageStyle}>
+    <div className='home-page'>
       {/* Title */}
-      <h1 style={{ color: styles.colors.cerulean }}>User's Stock Portfolio</h1>
+      <h1>User's Stock Portfolio</h1>
 
       {/* Total Performance Section */}
       <div>

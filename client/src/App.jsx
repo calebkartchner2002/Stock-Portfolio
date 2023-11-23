@@ -6,8 +6,8 @@ function App() {
     return (
         <div>
             <nav>
-                <Link to={"/"}>Homepage</Link>
-                <Link to={"/portfolio"}>Portfolio</Link>
+                <Link className="link" to={"/"}>Homepage</Link>
+                <Link className="link" to={"/portfolio"}>Portfolio</Link>
             </nav>
             <Outlet />
         </div>
