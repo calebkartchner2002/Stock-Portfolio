@@ -21,11 +21,9 @@ const featuredStocksData = [
   // Add more featured stocks as needed
 ];
 
-
 const HomePage = () => {
   return (
     <div className='home-page'>
-      {/* Title */}
       <h1>User's Stock Portfolio</h1>
 
       {/* Total Performance Section */}

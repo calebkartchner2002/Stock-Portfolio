@@ -9,10 +9,10 @@
 nav {
     display: flex;
     justify-content: flex-start;
-    gap: 1rem;
+    gap: 3rem;
     align-items: center;
     background-color: #0075a2ff;
-    padding: 0 2rem;
+    padding: 1rem 2rem;
 }
 
 .link {
