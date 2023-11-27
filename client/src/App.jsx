@@ -2,6 +2,7 @@ import { Outlet } from "react-router-dom"
 import { Link } from "react-router-dom"
 import './App.css'
 import { useState } from "react";
+import { CiLogout } from "react-icons/ci";
 
 
 async function logout() {
@@ -32,9 +33,14 @@ function App() {
     return (
         <div>
             <nav>
-                <Link className="link" to={"/"}>Homepage</Link>
-                <Link className="link" to={"/portfolio"}>Portfolio</Link>
-                <button onClick={logout}>Logout</button>
+                <div className="links-parent">
+                    <Link className="link" to={"/"}>Homepage</Link>
+                    <Link className="link" to={"/portfolio"}>Portfolio</Link>
+                </div>
+                <button className='logout' onClick={logout}>
+                    <CiLogout />
+                    Logout
+                </button>
             </nav>
             <Outlet />
         </div>

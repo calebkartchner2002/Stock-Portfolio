@@ -8,8 +8,7 @@
 
 nav {
     display: flex;
-    justify-content: flex-start;
-    gap: 3rem;
+    justify-content: space-between;
     align-items: center;
     background-color: #0075a2ff;
     padding: 1rem 2rem;
@@ -18,5 +17,25 @@ nav {
 .link {
     color: white;
     text-decoration: none;
+    background-color: transparent;
+    align-items: center;
+}
+
+.links-parent {
+    display: flex;
+    justify-content: flex-start;
+    gap: 3rem;
+    align-items: center;
+}
+
+.logout {
+    display: flex;
+    background-color: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 1rem;
+    align-items: center;
+    gap: 0.5rem;
 }
   
