@@ -24,6 +24,25 @@ function Portfolio() {
                 
                 <button>Add Stock to Portfolio</button>
             </form>
+            <form class="container2">
+                <div>
+                    Remove a Stock from a portfolio:
+                </div>
+                <div>
+                    <label>
+                        NYSE Stock Ticker Symbol:
+                        <input type="text" placeholder="ex: AAPL"/>
+                    </label>
+                </div>
+                <div>
+                <label>
+                    How many Shares?
+                    <input type="number" min={1} max={9999}/>
+                </label>
+                </div>
+                
+                <button>Remove Stock from Portfolio</button>
+            </form>
         </>
     )
 }
