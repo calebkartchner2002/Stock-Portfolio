@@ -3,16 +3,12 @@
     margin: 0;
     width: 100%;
     font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
     background-color: aquamarine;
 }
 
-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #0075a2ff;
-    padding: 1rem 2rem;
-}
 
 .link {
     color: white;
@@ -37,5 +33,17 @@ nav {
     font-size: 1rem;
     align-items: center;
     gap: 0.5rem;
+}
+
+.header-container {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #0075a2ff;
+    padding: 1rem 2rem;
 }
   

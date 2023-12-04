@@ -32,7 +32,7 @@ function App() {
 
     return (
         <div>
-            <nav>
+            <nav className="header-container">
                 <div className="links-parent">
                     <Link className="link" to={"/"}>Homepage</Link>
                     <Link className="link" to={"/portfolio"}>Portfolio</Link>
