@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom"
 import { Link } from "react-router-dom"
 import './App.css'
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CiLogout } from "react-icons/ci";
 
 
@@ -21,6 +21,11 @@ async function logout() {
 function App() {
     const [user, setUser] = useState(null);
     
+    useEffect(() => {
+        document.title = "Stock Portfolio Homepage"
+    }, []);
+
+
     
     async function getUser() {
         const res = await fetch('/me/', {
