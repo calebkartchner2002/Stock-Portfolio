@@ -1,7 +1,7 @@
 {% extends "registration/base.html"%}
 
 {% block content %}
-<form action="/registration/sign_in/" method="post">
+<form action="/registration/sign_in/" method="post" class="container">
   {% csrf_token %}
   <div>
     <label>
