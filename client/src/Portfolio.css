@@ -43,3 +43,8 @@
     font-size: 24px;
     padding: 10px;
 }
+
+.formscontainer{
+  display: flex;
+  justify-content: space-around;
+}

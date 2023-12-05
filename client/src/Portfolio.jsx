@@ -4,8 +4,9 @@ import './Portfolio.css';
 function Portfolio() {
     return (
         <>
-            <div class="header">Portfolio Page</div>
-            <form class="container">
+            <div className="header">Portfolio Page</div>
+            <div className="formscontainer">
+            <form className="container">
                 <div>
                     Add a Stock to a portfolio:
                 </div>
@@ -24,7 +25,7 @@ function Portfolio() {
                 
                 <button>Add Stock to Portfolio</button>
             </form>
-            <form class="container2">
+            <form className="container2">
                 <div>
                     Remove a Stock from a portfolio:
                 </div>
@@ -43,6 +44,8 @@ function Portfolio() {
                 
                 <button>Remove Stock from Portfolio</button>
             </form>
+            </div>
+            
         </>
     )
 }
