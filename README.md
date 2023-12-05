@@ -5,11 +5,57 @@ up to 5 calls a day
 data updates EOD
 up to 2 years of previous data 
 
-Queries will take the form ::
+Queries will take the form =>
 
 ```
 https://api.polygon.io/v2/aggs/ticker/{ticker}/range/{range}/{timespan}/{start_date}/{end_date}?adjusted={adjusted}&sort={sort}&limit={limit}&apiKey=3LsICkcEX4Y2lDe9Zq1bPGC7r9x_VBvv
 ```
+Responses will take the form =>
+
+```
+{
+  "adjusted": true,
+  "next_url": "https://api.polygon.io/v2/aggs/ticker/AAPL/range/1/day/1578114000000/2020-01-10?cursor=bGltaXQ9MiZzb3J0PWFzYw",
+  "queryCount": 2,
+  "request_id": "6a7e466379af0a71039d60cc78e72282",
+  "results": [
+    {
+      "c": 75.0875,
+      "h": 75.15,
+      "l": 73.7975,
+      "n": 1,
+      "o": 74.06,
+      "t": 1577941200000,
+      "v": 135647456,
+      "vw": 74.6099
+    },
+    {
+      "c": 74.3575,
+      "h": 75.145,
+      "l": 74.125,
+      "n": 1,
+      "o": 74.2875,
+      "t": 1578027600000,
+      "v": 146535512,
+      "vw": 74.7026
+    }
+  ],
+  "resultsCount": 2,
+  "status": "OK",
+  "ticker": "AAPL"
+}
+```
+c : number is the close price in the given time period
+h : number is the highest price in the given time period
+l : number is the lowest price in the given time period
+n : number is the number of transations in the aggregate window
+o : number is the open price
+otc : boolean whether or not this aggregate is for an OTC ticker
+t : number Unix Msec timestamp for start of aggregate
+v : number is the trading volume in the given time
+vw : number is the weighted average price
+
+next_url : string If present, this value can be used to fetch the next page
 
 
 
