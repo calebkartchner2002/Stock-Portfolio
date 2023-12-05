@@ -1,9 +1,14 @@
+* {
+  color: black;
+}
+
 .header {
     margin-top: 75px;
     font-size: 50px;
     display: flex;
     justify-content: center;
     background-color: #0075a2ff;
+    color: white;
 }
 
 .body {
@@ -16,6 +21,7 @@
     text-align: center;
     align-items: center;
     background-color: #adf5ffff;
+    color: black;
     display: block;
     font-size: 24px;
     padding: 10px;
@@ -23,6 +29,7 @@
   button {
     font-size: 20px;
     margin-top: 10px;
+    color: white;
   }
 
   input{
@@ -46,5 +53,13 @@
 
 .formscontainer{
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
+}
+
+.portfoliocontainer{
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  display: block;
+
 }

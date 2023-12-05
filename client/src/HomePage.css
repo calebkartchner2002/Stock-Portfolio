@@ -1,4 +1,7 @@
 .home-page {
     padding: 2rem;
-    margin-top: 50px;
+    padding-top: 75px;
+    justify-content: center;
+    text-align: center;
+    color: black;
 }

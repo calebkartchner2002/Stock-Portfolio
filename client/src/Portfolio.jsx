@@ -1,5 +1,11 @@
 import './Portfolio.css';
 
+const portfolioData = [
+    { symbol: 'AAPL', name: 'Apple Inc.', quantity: 10, value: 5000 },
+    { symbol: 'GOOGL', name: 'Alphabet Inc.', quantity: 5, value: 3000 },
+    // Add more stocks as needed
+  ];
+
 
 function Portfolio() {
     return (
@@ -45,7 +51,14 @@ function Portfolio() {
                 <button>Remove Stock from Portfolio</button>
             </form>
             </div>
-            
+            <div className='portfoliocontainer'>
+                <h2>Your Portfolio</h2>
+                {portfolioData.map((stock) => (
+                <div key={stock.symbol}>
+                    <p>{stock.name} ({stock.symbol}): {stock.quantity} shares - ${stock.value}</p>
+                </div>
+                ))}
+            </div>
         </>
     )
 }
