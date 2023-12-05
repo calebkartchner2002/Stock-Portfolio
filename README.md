@@ -5,7 +5,11 @@ up to 5 calls a day
 data updates EOD
 up to 2 years of previous data 
 
+Queries will take the form ::
 
+```
+https://api.polygon.io/v2/aggs/ticker/{ticker}/range/{range}/{timespan}/{start_date}/{end_date}?adjusted={adjusted}&sort={sort}&limit={limit}&apiKey=3LsICkcEX4Y2lDe9Zq1bPGC7r9x_VBvv
+```
 
 
 
