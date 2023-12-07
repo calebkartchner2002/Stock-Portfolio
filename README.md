@@ -1,4 +1,7 @@
 API INFORMATION:
+
+https://github.com/polygon-io/client-python
+
 API Key => 3LsICkcEX4Y2lDe9Zq1bPGC7r9x_VBvv
 
 up to 5 calls a minute
@@ -10,38 +13,28 @@ up to 2 years of previous data
 Queries will take the form =>
 
 ```
-https://api.polygon.io/v2/aggs/ticker/{ticker}/range/{range}/{timespan}/{start_date}/{end_date}?adjusted={adjusted}&sort={sort}&limit={limit}&apiKey=3LsICkcEX4Y2lDe9Zq1bPGC7r9x_VBvv
+url = f"https://api.polygon.io/v2/aggs/ticker/{ticker}prev?adjusted={adjusted}&apiKey={api_key}"
+
 ```
 Responses will take the form =>
 ```
 {
   "adjusted": true,
-  "next_url": "https://api.polygon.io/v2/aggs/ticker/AAPL/range/1/day/1578114000000/2020-01-10?cursor=bGltaXQ9MiZzb3J0PWFzYw",
-  "queryCount": 2,
+  "queryCount": 1,
   "request_id": "6a7e466379af0a71039d60cc78e72282",
   "results": [
     {
-      "c": 75.0875,
-      "h": 75.15,
-      "l": 73.7975,
-      "n": 1,
-      "o": 74.06,
-      "t": 1577941200000,
-      "v": 135647456,
-      "vw": 74.6099
-    },
-    {
-      "c": 74.3575,
-      "h": 75.145,
-      "l": 74.125,
-      "n": 1,
-      "o": 74.2875,
-      "t": 1578027600000,
-      "v": 146535512,
-      "vw": 74.7026
+      "T": "AAPL",
+      "c": 115.97,
+      "h": 117.59,
+      "l": 114.13,
+      "o": 115.55,
+      "t": 1605042000000,
+      "v": 131704427,
+      "vw": 116.3058
     }
   ],
-  "resultsCount": 2,
+  "resultsCount": 1,
   "status": "OK",
   "ticker": "AAPL"
 }

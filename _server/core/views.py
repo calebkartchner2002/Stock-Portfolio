@@ -43,7 +43,6 @@ def me(req):
 
 # Our portfolio again will be easy -- we run the following to get the current val per stock using information from the database.
 
-
 # Database entries will have to look something like:
 # id    ticker    shares     priceWhenBought
 # 1     AAPL      3          57.49
