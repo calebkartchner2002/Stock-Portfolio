@@ -94,15 +94,15 @@ where a user has many trades (1 to many relationship).
 
 ### TODO
 
-([ ]) Django view
+- [ ] Django view
 
-([ ]) Django Models (Database structures)
+- [ ] Django Models (Database structures)
 
-([ ]) Django add information from trade to the table
+- [ ] Django add information from trade to the table
 
-([ ]) Django remove stocks (see above for explanation)
+- [ ] Django remove stocks (see above for explanation)
 
-([ ]) Vite use effect to call django
+- [ ] Vite use effect to call django
 
 
 
