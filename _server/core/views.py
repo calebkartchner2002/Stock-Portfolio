@@ -5,6 +5,9 @@ import os
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.forms.models import model_to_dict
+from polygon import RESTClient
+api_key = os.environ.get("POLYGON_API_KEY")
+client = RESTClient(api_key=api_key)
 
 # Load manifest when server launches
 MANIFEST = {}
@@ -27,3 +30,15 @@ def index(req):
 @login_required
 def me(req):
     return JsonResponse({"user": model_to_dict(req.user)})
+
+@login_required
+def getCloseInformation(req):
+    ticker = "AAPL"
+    adjusted = "true"
+    url = f"https://api.polygon.io/v2/aggs/ticker/{ticker}prev?adjusted={adjusted}&apiKey={api_key}"
+    headers = {
+        "accept" : "application/json",
+        "Authorization": "Bearer 3LsICkcEX4Y2lDe9Zq1bPGC7r9x_VBvv"
+    }
+    response = RESTClient.get(url, header=headers)
+    print(response)
