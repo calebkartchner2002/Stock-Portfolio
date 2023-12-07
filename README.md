@@ -39,6 +39,7 @@ Responses will take the form =>
   "ticker": "AAPL"
 }
 ```
+T : String stock ticker symbol
 
 c : number is the close price in the given time period
 
@@ -50,8 +51,6 @@ n : number is the number of transations in the aggregate window
 
 o : number is the open price
 
-otc : boolean whether or not this aggregate is for an OTC ticker
-
 t : number Unix Msec timestamp for start of aggregate
 
 v : number is the trading volume in the given time
@@ -59,8 +58,6 @@ v : number is the trading volume in the given time
 vw : number is the weighted average price
 
 next_url : string If present, this value can be used to fetch the next page
-
-
 
 this should (should) get the information about the previous day's close. We can use this information to evaluate the users current portfolio worth.
 
@@ -80,10 +77,28 @@ Our portfolio again will be easy -- we run the following to get the current val 
 
 
 Database entries will have to look something like:
+
+## TRADES
 ```
-id    ticker    shares     priceWhenBought
-1     AAPL      3          57.49
+id    ticker    shares     priceWhenBought     UserEmail
+1     AAPL      3          57.49               asdf@asdf.com
 ```
+
+## USER
+```
+id    firstName  LastName   email             passwordHash
+1     John       Smith      asdf@asdf.com     a1234bcdef124aabcdefff
+```
+
+where a user has many trades (1 to many relationship).
+
+### TODO
+
+( ) Django view
+( ) Django Models (Database structures)
+( ) Django add information from trade to the table
+( ) Django remove stocks (see above for explanation)
+( ) Vite use effect to call django
 
 
 
