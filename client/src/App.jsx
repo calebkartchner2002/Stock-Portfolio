@@ -25,8 +25,12 @@ function App() {
         document.title = "Stock Portfolio Homepage"
     }, []);
 
-
-    
+    async function getPrevClose() {
+        const res = await fetch("/prevClose/", {
+            credentials: "same-origin",
+        })
+    }
+        
     async function getUser() {
         const res = await fetch('/me/', {
             credentials: "same-origin",

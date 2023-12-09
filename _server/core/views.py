@@ -53,9 +53,5 @@ def getCloseInformation(req):
     ticker = "AAPL"
     adjusted = "true"
     url = f"https://api.polygon.io/v2/aggs/ticker/{ticker}prev?adjusted={adjusted}&apiKey={api_key}"
-    headers = {
-        "accept" : "application/json",
-        "Authorization": "Bearer 3LsICkcEX4Y2lDe9Zq1bPGC7r9x_VBvv"
-    }
-    response = RESTClient.get(url, header=headers)
+    response = RESTClient.get(url)
     print(response)

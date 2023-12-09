@@ -84,15 +84,9 @@ id    ticker    shares     priceWhenBought     UserEmail
 1     AAPL      3          57.49               asdf@asdf.com
 ```
 
-## USER
-```
-id    firstName  LastName   email             passwordHash
-1     John       Smith      asdf@asdf.com     a1234bcdef124aabcdefff
-```
-
 where a user has many trades (1 to many relationship).
 
-### TODO
+# TODO
 
 - [ ] Django view
 
