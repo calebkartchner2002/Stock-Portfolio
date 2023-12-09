@@ -8,6 +8,7 @@ class User(models.Model):
 class Trade(models.Model):
     id = models.BigAutoField(primary_key=True)
     ticker = models.TextField()
+    shares = models.IntegerField()
     priceWhenBought = models.DecimalField()
     User = models.ForeignKey("User", on_delete=models.CASCADE)
 
