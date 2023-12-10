@@ -38,18 +38,34 @@ def getCloseInformation(req):
     adjusted = "true"
     url = f"https://api.polygon.io/v2/aggs/ticker/{ticker}prev?adjusted={adjusted}&apiKey={api_key}"
     response = RESTClient.get(url)
-    print(response)
+    body = json.loads(response.text)
+    return body
 
+@login_required
 def makeTrade(req):
     ticker = req.POST["ticker"],
-    share = req.POST['shares']
+    shares = req.POST['shares']
     priceWhenBought = req.POST["price"],
     user = req.POST['user']
     trade = Trade(
         ticker=ticker,
-        share=share,
+        shares=shares,
         priceWhenBought=priceWhenBought,
-        user=user
-    )
+        user=user)
     trade.save()
     
+@login_required
+def removeTrade(req):
+    ticker = req.POST["ticker"],
+    user = req.POST['user']
+    data = Trade.objects.filter(user=user)
+    data = data.objects.filter(ticker=ticker)
+    shares = req.POST['shares']
+    if shares < data.shares:
+        trade = Trade(
+        ticker=ticker,
+        shares=shares-data.shares,
+        priceWhenBought=data.priceWhenBought,
+        user=user)
+        trade.save()
+    data.delete()
