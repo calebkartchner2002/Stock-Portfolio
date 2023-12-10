@@ -32,7 +32,7 @@ def index(req):
 def me(req):
     return JsonResponse({"user": model_to_dict(req.user)})
 
-@login_required
+@login_required # Needs some work
 def getCloseInformation(req):
     ticker = "AAPL"
     adjusted = "true"
@@ -41,7 +41,7 @@ def getCloseInformation(req):
     body = json.loads(response.text)
     return body
 
-@login_required
+@login_required #Needs some work
 def makeTrade(req):
     ticker = req.POST["ticker"],
     shares = req.POST['shares']
@@ -54,7 +54,7 @@ def makeTrade(req):
         user=user)
     trade.save()
     
-@login_required
+@login_required #Needs some work
 def removeTrade(req):
     ticker = req.POST["ticker"],
     user = req.POST['user']

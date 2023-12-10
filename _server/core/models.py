@@ -11,4 +11,3 @@ class Trade(models.Model):
     shares = models.IntegerField()
     priceWhenBought = models.DecimalField(max_digits=4, decimal_places=2)
     User = models.ForeignKey("User", on_delete=models.CASCADE)
-

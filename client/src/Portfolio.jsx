@@ -1,6 +1,8 @@
 import './Portfolio.css';
 
-const portfolioData = [
+
+//portfolioData needs to be a state
+const portfolioData = [ // NEED TO PULL THESE FROM DATABASE, use router to call endpoint in Django
     { symbol: 'AAPL', name: 'Apple Inc.', quantity: 10, value: 5000 },
     { symbol: 'GOOGL', name: 'Alphabet Inc.', quantity: 5, value: 3000 },
     // Add more stocks as needed
