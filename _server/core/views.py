@@ -34,7 +34,7 @@ def index(req):
 def me(req):
     return JsonResponse({"user": model_to_dict(req.user)})
 
-@login_required #Needs some work
+@login_required
 def makeTrade(request : HttpRequest):
     user = model_to_dict(request.user)["email"]
     params = request.GET
@@ -53,17 +53,18 @@ def makeTrade(request : HttpRequest):
     
     return HttpResponse(response)
     
-@login_required #Needs some work
-def removeTrade(req):
-    ticker = req.POST["ticker"],
-    user = req.POST['user']
+@login_required
+def removeTrade(request):
+    user = model_to_dict(request.user)["email"]
+    params = request.GET
+    ticker = params.get("tickerRemove")
+    shares = params.get("sharesRemove")
     data = Trade.objects.filter(user=user)
     data = data.objects.filter(ticker=ticker)
-    shares = req.POST['shares']
     if shares < data.shares:
         trade = Trade(
         ticker=ticker,
-        shares=shares-data.shares,
+        shares=data.shares-shares,
         priceWhenBought=data.priceWhenBought,
         user=user)
         trade.save()
