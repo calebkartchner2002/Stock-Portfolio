@@ -68,13 +68,13 @@ def removeTrade(request):
     user = model_to_dict(request.user)["email"]
     params = request.GET
     ticker = params.get("tickerRemove")
-    shares = params.get("sharesRemove")
-    data = Trade.objects.filter(user=user)
-    data = data.objects.filter(ticker=ticker)
-    if shares < data.shares:
+    shares = int(params.get("sharesRemove"))
+    data = Trade.objects.filter(user=user).get(ticker=ticker)
+    dataShares = int(data.shares)
+    if shares < dataShares:
         trade = Trade(
         ticker=ticker,
-        shares=data.shares-shares,
+        shares=dataShares-shares,
         priceWhenBought=data.priceWhenBought,
         user=user)
         trade.save()
