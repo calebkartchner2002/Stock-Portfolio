@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.conf  import settings
 import json
 import os
@@ -7,7 +7,6 @@ from django.http import JsonResponse, HttpResponse, HttpRequest
 from django.forms.models import model_to_dict
 from polygon import RESTClient
 from .models import Trade
-# import polygon.rest.models.PreviousCloseAgg as PreviousCloseAgg
 
 api_key = os.environ.get("POLYGON_API_KEY")
 client = RESTClient(api_key=api_key)
@@ -42,16 +41,27 @@ def makeTrade(request : HttpRequest):
     sharesAdd = params.get("sharesAdd")
     response = client.get_previous_close_agg(ticker=tickerAdd)[0]
     close = response.close
-
-    if not (Trade.objects.filter(user=user)):
+    data = Trade.objects.filter(user=user)
+    if not (data):
         trade = Trade(
             ticker=tickerAdd,
-            shares=sharesAdd,
+            shares=sharesAdd,  
             priceWhenBought=close,
             user=user)
         trade.save()
-    
-    return HttpResponse(response)
+    else:
+        dataShares = 0
+        for i in data:
+            dataShares += i.shares
+        data.delete()
+        shares = int(sharesAdd) + int(dataShares)
+        trade = Trade(
+            ticker=tickerAdd,
+            shares=shares,
+            priceWhenBought=close,
+            user=user)
+        trade.save()
+    return redirect("/#/portfolio/")
     
 @login_required
 def removeTrade(request):
@@ -69,3 +79,4 @@ def removeTrade(request):
         user=user)
         trade.save()
     data.delete()
+    return redirect("/#/portfolio")
