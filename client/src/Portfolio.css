@@ -30,6 +30,7 @@
     font-size: 20px;
     margin-top: 10px;
     color: white;
+    background-color: black;
   }
 
   input{
@@ -38,6 +39,9 @@
     padding-left: 5px;
     width: 75px;
     text-align: center;
+    color: black;
+    background-color: white;
+
   }
 
 .container2 {
