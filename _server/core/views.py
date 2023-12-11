@@ -3,10 +3,12 @@ from django.conf  import settings
 import json
 import os
 from django.contrib.auth.decorators import login_required
-from django.http import JsonResponse, HttpResponse
+from django.http import JsonResponse, HttpResponse, HttpRequest
 from django.forms.models import model_to_dict
 from polygon import RESTClient
 from .models import Trade
+# import polygon.rest.models.PreviousCloseAgg as PreviousCloseAgg
+
 api_key = os.environ.get("POLYGON_API_KEY")
 client = RESTClient(api_key=api_key)
 
@@ -32,25 +34,25 @@ def index(req):
 def me(req):
     return JsonResponse({"user": model_to_dict(req.user)})
 
-@login_required # Needs some work
-def getCloseInformation(req):
-    ticker = "AAPL"
-    adjusted = "true"
-    response = client.get_previous_close_agg(ticker=ticker)
-    return HttpResponse(response)
-
 @login_required #Needs some work
-def makeTrade(req):
-    ticker = req.POST["ticker"],
-    shares = req.POST['shares']
-    priceWhenBought = req.POST["price"],
-    user = req.POST['user']
-    trade = Trade(
-        ticker=ticker,
-        shares=shares,
-        priceWhenBought=priceWhenBought,
-        user=user)
-    trade.save()
+def makeTrade(request : HttpRequest):
+    user = me(request)
+    params = request.GET
+    tickerAdd = params.get("tickerAdd")
+    sharesAdd = params.get("sharesAdd")
+    response = client.get_previous_close_agg(ticker=tickerAdd)[0]
+    close = response.close
+    print(type(close))
+
+    if not (Trade.objects.filter(user=user)):
+        trade = Trade(
+            ticker=tickerAdd,
+            shares=sharesAdd,
+            priceWhenBought=close,
+            user=user)
+        trade.save()
+    
+    return HttpResponse(response)
     
 @login_required #Needs some work
 def removeTrade(req):

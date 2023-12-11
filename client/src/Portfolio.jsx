@@ -13,20 +13,20 @@ function Portfolio() {
         <>
             <div className="header">Portfolio Page</div>
             <div className="formscontainer">
-            <form className="container" action="/prevClose/" method="get">
+            <form className="container" action="/makeTrade/" method="get">
                 <div>
                     Add a Stock to a portfolio:
                 </div>
                 <div>
                     <label>
                         NYSE Stock Ticker Symbol:
-                        <input type="text" placeholder="ex: AAPL"/>
+                        <input name='tickerAdd' id='tickerAdd' type="text" placeholder="ex: AAPL"/>
                     </label>
                 </div>
                 <div>
                 <label>
                     How many Shares?
-                    <input type="number" min={1} max={9999}/>
+                    <input name='sharesAdd' id='sharesAdd' type='number' min={1} max={9999}/>
                 </label>
                 </div>
                 
@@ -39,13 +39,13 @@ function Portfolio() {
                 <div>
                     <label>
                         NYSE Stock Ticker Symbol:
-                        <input type="text" placeholder="ex: AAPL"/>
+                        <input id="tickerRemove" type="text" placeholder="ex: AAPL"/>
                     </label>
                 </div>
                 <div>
                 <label>
                     How many Shares?
-                    <input type="number" min={1} max={9999}/>
+                    <input id='sharesRemove' type="number" min={1} max={9999}/>
                 </label>
                 </div>
                 
