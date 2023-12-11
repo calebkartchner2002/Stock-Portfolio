@@ -36,13 +36,12 @@ def me(req):
 
 @login_required #Needs some work
 def makeTrade(request : HttpRequest):
-    user = me(request)
+    user = model_to_dict(request.user)["email"]
     params = request.GET
     tickerAdd = params.get("tickerAdd")
     sharesAdd = params.get("sharesAdd")
     response = client.get_previous_close_agg(ticker=tickerAdd)[0]
     close = response.close
-    print(type(close))
 
     if not (Trade.objects.filter(user=user)):
         trade = Trade(
