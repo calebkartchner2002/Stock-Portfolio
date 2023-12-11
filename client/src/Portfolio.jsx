@@ -13,7 +13,7 @@ function Portfolio() {
         <>
             <div className="header">Portfolio Page</div>
             <div className="formscontainer">
-            <form className="container">
+            <form className="container" action="/prevClose/" method="get">
                 <div>
                     Add a Stock to a portfolio:
                 </div>

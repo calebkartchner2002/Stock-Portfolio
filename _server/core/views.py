@@ -3,7 +3,7 @@ from django.conf  import settings
 import json
 import os
 from django.contrib.auth.decorators import login_required
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from django.forms.models import model_to_dict
 from polygon import RESTClient
 from .models import Trade
@@ -36,10 +36,8 @@ def me(req):
 def getCloseInformation(req):
     ticker = "AAPL"
     adjusted = "true"
-    url = f"https://api.polygon.io/v2/aggs/ticker/{ticker}prev?adjusted={adjusted}&apiKey={api_key}"
-    response = RESTClient.get(url)
-    body = json.loads(response.text)
-    return body
+    response = client.get_previous_close_agg(ticker=ticker)
+    return HttpResponse(response)
 
 @login_required #Needs some work
 def makeTrade(req):
