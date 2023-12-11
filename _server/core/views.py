@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.forms.models import model_to_dict
 from polygon import RESTClient
-from models import Trade
+from .models import Trade
 api_key = os.environ.get("POLYGON_API_KEY")
 client = RESTClient(api_key=api_key)
 
