@@ -58,20 +58,20 @@ function Portfolio() {
                 
                 <button>Add Stock to Portfolio</button>
             </form>
-            <form className="container2">
+            <form className="container2" action="/removeTrade/" method="get">
                 <div>
                     Remove a Stock from a portfolio:
                 </div>
                 <div>
                     <label>
                         NYSE Stock Ticker Symbol:
-                        <input id="tickerRemove" type="text" placeholder="ex: AAPL"/>
+                        <input name="tickerRemove" id="tickerRemove" type="text" placeholder="ex: AAPL"/>
                     </label>
                 </div>
                 <div>
                 <label>
                     How many Shares?
-                    <input id='sharesRemove' type="number" min={1} max={9999}/>
+                    <input name='sharesRemove' id='sharesRemove' type="number" min={1} max={9999}/>
                 </label>
                 </div>
                 
