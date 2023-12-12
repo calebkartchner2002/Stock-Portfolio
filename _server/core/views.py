@@ -1,3 +1,4 @@
+from django.core.serializers import serialize
 from django.shortcuts import render
 from django.conf  import settings
 import json
@@ -33,6 +34,14 @@ def index(req):
 @login_required
 def me(req):
     return JsonResponse({"user": model_to_dict(req.user)})
+
+@login_required
+def getTrade(request : HttpRequest):
+    user = model_to_dict(request.user)["email"]
+    trades = Trade.objects.filter(user=user)
+    trades_list = [model_to_dict(trade) for trade in trades]
+
+    return JsonResponse({'trades': trades_list}, safe=False)
 
 @login_required #Needs some work
 def makeTrade(request : HttpRequest):

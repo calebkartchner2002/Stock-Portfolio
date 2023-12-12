@@ -1,3 +1,5 @@
+import React from 'react';
+import { useEffect, useState } from 'react';
 import './Portfolio.css';
 
 //portfolioData needs to be a state
@@ -7,8 +9,32 @@ const portfolioData = [ // NEED TO PULL THESE FROM DATABASE, use router to call 
     // Add more stocks as needed
   ];
 
-
 function Portfolio() {
+    const [user, setUser] = useState(null)
+    const [loading, setLoading] = useState(true)
+    const [trades, setTrades] = useState([])
+
+    async function getUser() {
+        const res = await fetch('/me/', {
+            credentials: "same-origin",
+        })
+        const body = await res.json();
+        setUser(body.user);
+
+        const trade = await fetch('/getTrade/', {
+            credentials: "same-origin",
+        })
+        const tradesResponse = await trade.json();
+        const trades = tradesResponse.trades || []
+        setTrades(trades)
+        setLoading(false)
+    }
+    
+    useEffect(() => {
+        getUser();
+    }, [])
+
+
     return (
         <>
             <div className="header">Portfolio Page</div>
@@ -54,6 +80,16 @@ function Portfolio() {
             </div>
             <div className='portfoliocontainer'>
                 <h2>Your Portfolio</h2>
+                {loading && <div>loading...</div> }
+                {user && <div> {user.email} </div> }
+                
+                {trades && trades.map(trade => (
+                    <li key={trade.id}>
+                        Ticker: {trade.ticker}, Shares: {trade.shares}
+                    </li>
+                ))}
+
+
                 {portfolioData.map((stock) => (
                 <div key={stock.symbol}>
                     <p>{stock.name} ({stock.symbol}): {stock.quantity} shares - ${stock.value}</p>
