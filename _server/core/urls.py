@@ -7,4 +7,5 @@ urlpatterns = [
     path('makeTrade/', view=views.makeTrade, name='make Trade'),
     path('removeTrade/', view=views.removeTrade, name="remove Trade"),
     path('getTrade/', view=views.getTrade, name="getTrade"),
+    path('displayTrade/<str:ticker>/', view=views.displayTrade, name="displayTrade"),
 ]

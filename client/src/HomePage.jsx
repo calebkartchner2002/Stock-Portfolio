@@ -26,6 +26,7 @@ const HomePage = () => {
   const [user, setUser] = useState(null)
     const [loading, setLoading] = useState(true)
     const [trades, setTrades] = useState([])
+    const [featuredStocks, setFeaturedStocks] = useState([])
 
     async function getTrades() {
         const res = await fetch('/me/', {
@@ -41,6 +42,23 @@ const HomePage = () => {
         const trades = tradesResponse.trades || []
         setTrades(trades)
         setLoading(false)
+
+        //get featured stocks
+        const featuredTickers = ['AMZN', 'MSFT']
+        const updatedFeaturedStocks = [];
+        for (const ticker of featuredTickers){
+          const stock = await fetch(`/displayTrade/${ticker}`, {
+              credentials: "same-origin",
+          })
+          const stockResponse = await stock.json();
+          const fstock = stockResponse.trade
+          const stockObject = {symbol: ticker, price: fstock }
+          updatedFeaturedStocks.push(stockObject)
+        }
+        setFeaturedStocks([...updatedFeaturedStocks]);
+
+
+
     }
     
     useEffect(() => {
@@ -73,9 +91,9 @@ const HomePage = () => {
       {/* Featured Stocks Section */}
       <div className='portfoliocontainer'>
         <h2>Featured Stocks</h2>
-        {featuredStocksData.map((stock) => (
+        {featuredStocks.map((stock) => (
           <div className="portContainer" key={stock.symbol}>
-            {stock.name} ({stock.symbol}): ${stock.price}
+            ({stock.symbol}): ${stock.price}
           </div>
         ))}
       </div>

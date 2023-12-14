@@ -81,3 +81,10 @@ def removeTrade(request):
             trade.delete()
             break 
     return redirect("/#/portfolio")
+
+@login_required
+def displayTrade(request, ticker):
+    response = client.get_previous_close_agg(ticker=ticker)[0]
+    close = response.close
+    
+    return JsonResponse({'trade': close}, safe=False)
