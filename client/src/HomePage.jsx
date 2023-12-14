@@ -14,6 +14,7 @@ const HomePage = () => {
     const [trades, setTrades] = useState([])
     const [featuredStocks, setFeaturedStocks] = useState([])
     const [totalMoney, setTotalMoney] = useState(0)
+    const [pastMoney, setPastMoney] = useState(0)
 
     async function getTrades() {
         const res = await fetch('/me/', {
@@ -46,10 +47,22 @@ const HomePage = () => {
 
         //get total money  // NEEDS TO BE FIXED
         let money = 0
+        const totalTickers = []
+        let pastMoney = 0
         trades.map(trade => {
-          money += (trade.priceWhenBought * trade.shares)
+          totalTickers.push(trade)
+          pastMoney += (trade.priceWhenBought * trade.shares)
         })
+        for (const tick of totalTickers){
+          const stock = await fetch(`/displayTrade/${tick.ticker}`, {
+              credentials: "same-origin",
+          })
+          const stockResponse = await stock.json();
+          const fstock = stockResponse.trade
+          money += (fstock * tick.shares)
+        }
         setTotalMoney(money)
+        setPastMoney(pastMoney)
 
 
     }
@@ -67,7 +80,7 @@ const HomePage = () => {
       <div className='portfoliocontainer'>
         <h2>Total Performance</h2>
         <p className='portContainer'>Total Value: ${totalMoney}</p>
-        <p className='portContainer'>Overall Change: ${totalPerformanceData.overallChange}</p>
+        <p className='portContainer'>Overall Change: ${(totalMoney - pastMoney).toFixed(2)}</p>
       </div>
 
       {/* User Portfolio Section NEEDS TO BE FIXED */}
