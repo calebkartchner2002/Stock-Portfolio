@@ -57,7 +57,7 @@ def makeTrade(request : HttpRequest):
     trade.save()
     return redirect("/#/portfolio/")
     
-@login_required #Currently broken
+@login_required 
 def removeTrade(request):
     user = model_to_dict(request.user)["email"]
     params = request.GET

@@ -77,9 +77,9 @@ function Portfolio() {
                 {user && <div> {user.email} </div> }
                 
                 {trades && trades.map(trade => (
-                    <li key={trade.id}>
+                    <div className='portContainer' key={trade.id}>
                         Ticker: {trade.ticker}, Shares: {trade.shares}
-                    </li>
+                    </div>
                 ))}
             </div>
         </>
