@@ -66,14 +66,18 @@ def removeTrade(request):
     data = Trade.objects.filter(user=user).filter(ticker=ticker)
     for trade in data:
         dataShares = int(trade.shares)
+        if shares > dataShares:
+            shares -= dataShares
+            trade.delete()
         if shares < dataShares:
-            trade = Trade(
+            newTrade = Trade(
             ticker=ticker,
             shares=dataShares-shares,
-            priceWhenBought=data.priceWhenBought,
+            priceWhenBought=trade.priceWhenBought,
             user=user)
-            trade.save()
-        else:
-            shares -= dataShares
-            data.delete()    
+            newTrade.save()
+            trade.delete()  
+        if shares == dataShares:
+            trade.delete()
+            break 
     return redirect("/#/portfolio")
