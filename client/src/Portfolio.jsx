@@ -2,13 +2,6 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import './Portfolio.css';
 
-//portfolioData needs to be a state
-const portfolioData = [ // NEED TO PULL THESE FROM DATABASE, use router to call endpoint in Django
-    { symbol: 'AAPL', name: 'Apple Inc.', quantity: 10, value: 5000 },
-    { symbol: 'GOOGL', name: 'Alphabet Inc.', quantity: 5, value: 3000 },
-    // Add more stocks as needed
-  ];
-
 function Portfolio() {
     const [user, setUser] = useState(null)
     const [loading, setLoading] = useState(true)
@@ -87,13 +80,6 @@ function Portfolio() {
                     <li key={trade.id}>
                         Ticker: {trade.ticker}, Shares: {trade.shares}
                     </li>
-                ))}
-
-
-                {portfolioData.map((stock) => (
-                <div key={stock.symbol}>
-                    <p>{stock.name} ({stock.symbol}): {stock.quantity} shares - ${stock.value}</p>
-                </div>
                 ))}
             </div>
         </>

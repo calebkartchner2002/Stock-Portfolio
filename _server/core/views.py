@@ -41,7 +41,7 @@ def getTrade(request : HttpRequest):
 
     return JsonResponse({'trades': trades_list}, safe=False)
 
-@login_required #Needs some work
+@login_required
 def makeTrade(request : HttpRequest):
     user = model_to_dict(request.user)["email"]
     params = request.GET
@@ -49,42 +49,31 @@ def makeTrade(request : HttpRequest):
     sharesAdd = params.get("sharesAdd")
     response = client.get_previous_close_agg(ticker=tickerAdd)[0]
     close = response.close
-    data = Trade.objects.filter(user=user)
-    if not (data):
-        trade = Trade(
+    trade = Trade(
             ticker=tickerAdd,
             shares=sharesAdd,  
             priceWhenBought=close,
             user=user)
-        trade.save()
-    else:
-        dataShares = 0
-        for i in data:
-            dataShares += i.shares
-        data.delete()
-        shares = int(sharesAdd) + int(dataShares)
-        trade = Trade(
-            ticker=tickerAdd,
-            shares=shares,
-            priceWhenBought=close,
-            user=user)
-        trade.save()
+    trade.save()
     return redirect("/#/portfolio/")
     
-@login_required
+@login_required #Currently broken
 def removeTrade(request):
     user = model_to_dict(request.user)["email"]
     params = request.GET
     ticker = params.get("tickerRemove")
     shares = int(params.get("sharesRemove"))
-    data = Trade.objects.filter(user=user).get(ticker=ticker)
-    dataShares = int(data.shares)
-    if shares < dataShares:
-        trade = Trade(
-        ticker=ticker,
-        shares=dataShares-shares,
-        priceWhenBought=data.priceWhenBought,
-        user=user)
-        trade.save()
-    data.delete()
+    data = Trade.objects.filter(user=user).filter(ticker=ticker)
+    for trade in data:
+        dataShares = int(trade.shares)
+        if shares < dataShares:
+            trade = Trade(
+            ticker=ticker,
+            shares=dataShares-shares,
+            priceWhenBought=data.priceWhenBought,
+            user=user)
+            trade.save()
+        else:
+            shares -= dataShares
+            data.delete()    
     return redirect("/#/portfolio")
