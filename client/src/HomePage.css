@@ -5,3 +5,22 @@
     text-align: center;
     color: black;
 }
+
+.portfoliocontainer{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    display: block;
+  }
+  
+.portContainer{
+    border: solid thin black;
+    width: 25%;
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    margin-left: 37.5%;
+    margin-top: 15px;
+    background-color:#0075a2ff;
+    color:white;
+}
