@@ -27,7 +27,7 @@ const HomePage = () => {
     const [loading, setLoading] = useState(true)
     const [trades, setTrades] = useState([])
 
-    async function getUser() {
+    async function getTrades() {
         const res = await fetch('/me/', {
             credentials: "same-origin",
         })
@@ -44,7 +44,7 @@ const HomePage = () => {
     }
     
     useEffect(() => {
-        getUser();
+        getTrades();
     }, [])
 
 
