@@ -44,7 +44,7 @@ const HomePage = () => {
         setLoading(false)
 
         //get featured stocks
-        const featuredTickers = ['AMZN', 'MSFT']
+        const featuredTickers = ['AMZN', 'MSFT', 'AAPL']
         const updatedFeaturedStocks = [];
         for (const ticker of featuredTickers){
           const stock = await fetch(`/displayTrade/${ticker}`, {
