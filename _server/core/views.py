@@ -69,7 +69,7 @@ def removeTrade(request):
         if shares > dataShares:
             shares -= dataShares
             trade.delete()
-        if shares < dataShares:
+        elif shares < dataShares:
             newTrade = Trade(
             ticker=ticker,
             shares=dataShares-shares,
