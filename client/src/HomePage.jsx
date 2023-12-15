@@ -4,29 +4,16 @@ import { useEffect, useState } from 'react';
 import "./HomePage.css"
 
 // Dummy data for demonstration purposes
-const totalPerformanceData = { // NEED TO COMPARE DATABASE Info to api info, use Django
-  totalValue: 15000,
-  todayChange: 500,
+const totalPerformanceData = { 
   overallChange: 2000,
 };
-
-const portfolioData = [ // NEED TO PULL THESE FROM DATABASE, use router to call endpoint in Django
-  { symbol: 'AAPL', name: 'Apple Inc.', quantity: 10, value: 5000 },
-  { symbol: 'GOOGL', name: 'Alphabet Inc.', quantity: 5, value: 3000 },
-  // Add more stocks as needed
-];
-
-const featuredStocksData = [ //simple api calls
-  { symbol: 'AMZN', name: 'Amazon.com Inc.', price: 3500 },
-  { symbol: 'MSFT', name: 'Microsoft Corporation', price: 300 },
-  // Add more featured stocks as needed
-];
 
 const HomePage = () => {
   const [user, setUser] = useState(null)
     const [loading, setLoading] = useState(true)
     const [trades, setTrades] = useState([])
     const [featuredStocks, setFeaturedStocks] = useState([])
+    const [totalMoney, setTotalMoney] = useState(0)
 
     async function getTrades() {
         const res = await fetch('/me/', {
@@ -44,7 +31,7 @@ const HomePage = () => {
         setLoading(false)
 
         //get featured stocks
-        const featuredTickers = ['AMZN', 'MSFT', 'AAPL']
+        const featuredTickers = ['GOOGL', 'NFLX',]
         const updatedFeaturedStocks = [];
         for (const ticker of featuredTickers){
           const stock = await fetch(`/displayTrade/${ticker}`, {
@@ -57,6 +44,12 @@ const HomePage = () => {
         }
         setFeaturedStocks([...updatedFeaturedStocks]);
 
+        //get total money
+        let money = 0
+        trades.map(trade => {
+          money += (trade.priceWhenBought * trade.shares)
+        })
+        setTotalMoney(money)
 
 
     }
@@ -73,8 +66,7 @@ const HomePage = () => {
       {/* Total Performance Section */}
       <div className='portfoliocontainer'>
         <h2>Total Performance</h2>
-        <p className='portContainer'>Total Value: ${totalPerformanceData.totalValue}</p>
-        <p className='portContainer'>Today's Change: ${totalPerformanceData.todayChange}</p>
+        <p className='portContainer'>Total Value: ${totalMoney}</p>
         <p className='portContainer'>Overall Change: ${totalPerformanceData.overallChange}</p>
       </div>
 
@@ -83,7 +75,7 @@ const HomePage = () => {
         <h2>Your Portfolio</h2>
         {trades && trades.map(trade => (
           <div className='portContainer' key={trade.id}>
-            Ticker: {trade.ticker}, Shares: {trade.shares}
+            Ticker: {trade.ticker}, Shares: {trade.shares} Money in Stock: ${trade.priceWhenBought * trade.shares}
           </div>
         ))}
       </div>
