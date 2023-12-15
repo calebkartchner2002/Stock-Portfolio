@@ -57,7 +57,7 @@ def makeTrade(request : HttpRequest):
     trade.save()
     return redirect("/#/portfolio/")
     
-@login_required 
+@login_required # DOES NOT WORK IF REMOVED is greater than the first list item!
 def removeTrade(request):
     user = model_to_dict(request.user)["email"]
     params = request.GET

@@ -44,7 +44,7 @@ const HomePage = () => {
         }
         setFeaturedStocks([...updatedFeaturedStocks]);
 
-        //get total money
+        //get total money  // NEEDS TO BE FIXED
         let money = 0
         trades.map(trade => {
           money += (trade.priceWhenBought * trade.shares)
@@ -70,7 +70,7 @@ const HomePage = () => {
         <p className='portContainer'>Overall Change: ${totalPerformanceData.overallChange}</p>
       </div>
 
-      {/* User Portfolio Section */}
+      {/* User Portfolio Section NEEDS TO BE FIXED */}
       <div className='portfoliocontainer'>
         <h2>Your Portfolio</h2>
         {trades && trades.map(trade => (
