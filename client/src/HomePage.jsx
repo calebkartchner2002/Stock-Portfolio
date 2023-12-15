@@ -1,5 +1,6 @@
 import React from 'react';
 import { styles } from './styles';
+import { useEffect, useState } from 'react';
 import "./HomePage.css"
 
 // Dummy data for demonstration purposes
@@ -22,6 +23,31 @@ const featuredStocksData = [ //simple api calls
 ];
 
 const HomePage = () => {
+  const [user, setUser] = useState(null)
+    const [loading, setLoading] = useState(true)
+    const [trades, setTrades] = useState([])
+
+    async function getUser() {
+        const res = await fetch('/me/', {
+            credentials: "same-origin",
+        })
+        const body = await res.json();
+        setUser(body.user);
+
+        const trade = await fetch('/getTrade/', {
+            credentials: "same-origin",
+        })
+        const tradesResponse = await trade.json();
+        const trades = tradesResponse.trades || []
+        setTrades(trades)
+        setLoading(false)
+    }
+    
+    useEffect(() => {
+        getUser();
+    }, [])
+
+
   return (
     <div className='home-page'>
       <h1>User's Stock Portfolio</h1>
@@ -37,9 +63,9 @@ const HomePage = () => {
       {/* User Portfolio Section */}
       <div className='portfoliocontainer'>
         <h2>Your Portfolio</h2>
-        {portfolioData.map((stock) => (
-          <div className='portContainer' key={stock.symbol}>
-            {stock.name} ({stock.symbol}): {stock.quantity} shares - ${stock.value}
+        {trades && trades.map(trade => (
+          <div className='portContainer' key={trade.id}>
+            Ticker: {trade.ticker}, Shares: {trade.shares}
           </div>
         ))}
       </div>
