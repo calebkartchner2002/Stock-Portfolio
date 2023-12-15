@@ -3,11 +3,6 @@ import { styles } from './styles';
 import { useEffect, useState } from 'react';
 import "./HomePage.css"
 
-// Dummy data for demonstration purposes
-const totalPerformanceData = { 
-  overallChange: 2000,
-};
-
 const HomePage = () => {
   const [user, setUser] = useState(null)
     const [loading, setLoading] = useState(true)
@@ -45,7 +40,7 @@ const HomePage = () => {
         }
         setFeaturedStocks([...updatedFeaturedStocks]);
 
-        //get total money  // NEEDS TO BE FIXED
+        //get total money
         let money = 0
         const totalTickers = []
         let pastMoney = 0
@@ -63,8 +58,6 @@ const HomePage = () => {
         }
         setTotalMoney(money)
         setPastMoney(pastMoney)
-
-
     }
     
     useEffect(() => {
@@ -79,7 +72,7 @@ const HomePage = () => {
       {/* Total Performance Section */}
       <div className='portfoliocontainer'>
         <h2>Total Performance</h2>
-        <p className='portContainer'>Total Value: ${totalMoney}</p>
+        <p className='portContainer'>Total Value: ${totalMoney.toFixed(2)}</p>
         <p className='portContainer'>Overall Change: ${(totalMoney - pastMoney).toFixed(2)}</p>
       </div>
 

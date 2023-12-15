@@ -27,7 +27,6 @@ function Portfolio() {
         getTrades();
     }, [])
 
-
     return (
         <>
             <div className="header">Portfolio Page</div>
